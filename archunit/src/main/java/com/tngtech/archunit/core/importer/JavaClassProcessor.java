@@ -518,7 +518,7 @@ class JavaClassProcessor extends ClassVisitor {
             return new AnnotationArrayProcessor(new AnnotationArrayContext() {
                 @Override
                 public String getDeclaringAnnotationTypeName() {
-                    return annotationBuilder.getTypeDescriptor().getFullyQualifiedClassName();
+                    return annotationBuilder.getFullyQualifiedClassName();
                 }
 
                 @Override
