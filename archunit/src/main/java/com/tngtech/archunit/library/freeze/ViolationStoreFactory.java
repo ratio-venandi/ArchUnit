@@ -40,6 +40,7 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.io.Files.toByteArray;
 import static com.tngtech.archunit.base.ReflectionUtils.newInstanceOf;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Collections.emptyList;
 
 class ViolationStoreFactory {
     static final String FREEZE_STORE_PROPERTY_NAME = "freeze.store";
@@ -183,6 +184,9 @@ class ViolationStoreFactory {
 
         private List<String> readLines(String ruleDetailsFileName) {
             String violationsText = readStoreFile(ruleDetailsFileName);
+            if (violationsText.isEmpty()) {
+                return emptyList();
+            }
             List<String> lines = Splitter.on(UNESCAPED_LINE_BREAK_PATTERN).splitToList(violationsText);
             return unescape(lines);
         }
